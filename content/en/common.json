@@ -1,8 +1,8 @@
 {
+  "announce": "Welcome. Take your time and look around",
   "nav": {
     "label": "Main",
     "menu": "Menu",
-    "submenu": "Submenu: {item}",
     "shop": "Shop",
     "about": "About",
     "contact": "Contact"
@@ -10,8 +10,7 @@
   "tools": {
     "search": "Search",
     "account": "Account",
-    "cart": "Cart",
-    "cartCount": "Cart, {count, plural, one {# item} other {# items}}"
+    "cart": "Cart"
   },
   "footer": {
     "note": "Thank you for shopping with us.",
@@ -21,8 +20,6 @@
     "shipping": "Shipping",
     "returns": "Returns",
     "privacy": "Privacy",
-    "terms": "Terms",
-    "legal": "Legal",
-    "notice": "Legal notice"
+    "terms": "Terms"
   }
 }

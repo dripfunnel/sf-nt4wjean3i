@@ -1,8 +1,12 @@
-import { OrderView } from '../components/interactive/OrderView'
+import { useStorefront } from '@dripfunnel/storefront-core/theme'
 import { Layout } from '../components/Layout'
+import { PageIntro } from '../components/PageIntro'
 
-export const OrderConfirmationPage = () => (
-  <Layout>
-    <OrderView />
-  </Layout>
-)
+export const OrderConfirmationPage = () => {
+  const { t } = useStorefront()
+  return (
+    <Layout>
+      <PageIntro title={t('pages.confirmation.title')} lead={t('pages.confirmation.lead')} />
+    </Layout>
+  )
+}

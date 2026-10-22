@@ -1,16 +1,14 @@
 import type { ReactNode } from 'react'
-import { ConsentBanner, ConsentSettingsButton, Link, PoweredBy, PreviewBanner, useCart, useMenu, useStorefront } from '@dripfunnel/storefront-core/theme'
+import { ConsentBanner, ConsentSettingsButton, Link, PoweredBy, PreviewBanner, useStorefront } from '@dripfunnel/storefront-core/theme'
 import { Menu } from './interactive/Menu'
-import { NavItem } from './interactive/NavItem'
 import styles from '../styles/layout.module.css'
 
 export const Layout = ({ children }: { children: ReactNode }) => {
   const { store, t, mode, poweredBy } = useStorefront()
-  const menu = useMenu()
-  const { count } = useCart()
   return (
     <div className={styles.shell}>
       {mode === 'live' ? null : <PreviewBanner t={t} className={styles.preview} />}
+      <p className={styles.announce}>{t('common.announce')}</p>
       <header className={styles.header}>
         <div className={styles.bar}>
           <Link href="/" className={styles.brand}>
@@ -18,13 +16,9 @@ export const Layout = ({ children }: { children: ReactNode }) => {
           </Link>
           <Menu label={t('common.nav.menu')}>
             <nav className={styles.nav} aria-label={t('common.nav.label')}>
-              {menu.items.length ? (
-                menu.items.map((item) => <NavItem key={item.id} item={item} />)
-              ) : (
-                <Link href="/collections/all/" className={styles.navLink}>
-                  {t('common.nav.shop')}
-                </Link>
-              )}
+              <Link href="/search/" className={styles.navLink}>
+                {t('common.nav.shop')}
+              </Link>
               <Link href="/about/" className={styles.navLink}>
                 {t('common.nav.about')}
               </Link>
@@ -53,12 +47,7 @@ export const Layout = ({ children }: { children: ReactNode }) => {
                 <path d="M5.5 8h13l-1 12h-11z" />
                 <path d="M9 8V6.5a3 3 0 016 0V8" />
               </svg>
-              <span className={styles.hidden}>{count > 0 ? t('common.tools.cartCount', { count }) : t('common.tools.cart')}</span>
-              {count > 0 ? (
-                <span className={styles.count} aria-hidden="true">
-                  {count}
-                </span>
-              ) : null}
+              <span className={styles.hidden}>{t('common.tools.cart')}</span>
             </Link>
           </div>
         </div>
@@ -68,22 +57,11 @@ export const Layout = ({ children }: { children: ReactNode }) => {
         <div className={styles.columns}>
           <div className={styles.about}>
             <p className={styles.footerBrand}>{store.name}</p>
-            <p className={styles.note}>{store.tagline ?? t('common.footer.note')}</p>
-            {store.contactEmail ? <p className={styles.contact}>{store.contactEmail}</p> : null}
-            {store.contactPhone ? <p className={styles.contact}>{store.contactPhone}</p> : null}
-            {store.social.length ? (
-              <div className={styles.social}>
-                {store.social.map((s) => (
-                  <Link key={s.network} href={s.url} className={styles.footerLink}>
-                    {s.network}
-                  </Link>
-                ))}
-              </div>
-            ) : null}
+            <p className={styles.note}>{t('common.footer.note', { store: store.name })}</p>
           </div>
           <div className={styles.links}>
             <h2 className={styles.heading}>{t('common.footer.shop')}</h2>
-            <Link href="/collections/all/" className={styles.footerLink}>
+            <Link href="/search/" className={styles.footerLink}>
               {t('common.footer.all')}
             </Link>
             <Link href="/about/" className={styles.footerLink}>
@@ -104,17 +82,11 @@ export const Layout = ({ children }: { children: ReactNode }) => {
             <Link href="/policies/returns/" className={styles.footerLink}>
               {t('common.footer.returns')}
             </Link>
-          </div>
-          <div className={styles.links}>
-            <h2 className={styles.heading}>{t('common.footer.legal')}</h2>
-            <Link href="/policies/terms/" className={styles.footerLink}>
-              {t('common.footer.terms')}
-            </Link>
             <Link href="/policies/privacy/" className={styles.footerLink}>
               {t('common.footer.privacy')}
             </Link>
-            <Link href="/policies/legal/" className={styles.footerLink}>
-              {t('common.footer.notice')}
+            <Link href="/policies/terms/" className={styles.footerLink}>
+              {t('common.footer.terms')}
             </Link>
           </div>
         </div>

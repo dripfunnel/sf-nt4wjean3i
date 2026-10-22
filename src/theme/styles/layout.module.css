@@ -1,33 +1,35 @@
 .shell {
-  --bg: #fbf8f4;
+  --bg: #fffcf3;
   --surface: #fff;
-  --soft: #f3eee7;
-  --tint: #e3ece8;
-  --ink: #1d1b18;
-  --ink-soft: #46423c;
-  --muted: #6b655d;
-  --line: #e6dfd6;
-  --accent: #2f5d50;
+  --soft: color-mix(in srgb, var(--ink) 5%, var(--bg));
+  --tint: color-mix(in srgb, var(--accent) 12%, var(--bg));
+  --danger: #b42318;
+  --ink: #1f2d1c;
+  --ink-soft: #56644f;
+  --muted: #56644f;
+  --line: rgb(31 45 28 / 12%);
+  --accent: #2f7a35;
   --accent-ink: #fff;
-  --danger: #9a3412;
-  --focus: #00519f;
-  --radius: 12px;
-  --button-radius: 999px;
-  --heading-font: 'Lora', georgia, serif;
-  --heading-weight: 600;
-  --brand-weight: 700;
+  --focus: #1f2d1c;
+  --radius: 14px;
+  --button-radius: 14px;
+  --heading-font: 'Nunito', system-ui, sans-serif;
+  --heading-weight: 800;
+  --brand-weight: 800;
   --heading-case: none;
-  --heading-spacing: -0.01em;
-  --body-font: 'Inter', system-ui, sans-serif;
-  --header-bg: #fbf8f4;
-  --header-ink: #1d1b18;
-  --header-hover: #f3eee7;
-  --footer-bg: #f3eee7;
-  --footer-ink: #1d1b18;
-  --footer-muted: #6b655d;
-  --footer-line: #e6dfd6;
-  --picture: linear-gradient(160deg, #c9e2d8, #9fc5b8);
-  --picture-alt: linear-gradient(160deg, #e2dcc4, #c8bc98);
+  --heading-spacing: -0.02em;
+  --body-font: 'Nunito', system-ui, sans-serif;
+  --header-bg: #fffcf3;
+  --header-ink: #1f2d1c;
+  --header-hover: rgb(31 45 28 / 6%);
+  --footer-bg: #fff;
+  --footer-ink: #1f2d1c;
+  --footer-muted: #56644f;
+  --footer-line: rgb(31 45 28 / 12%);
+  --picture: linear-gradient(135deg, hsl(90 75% 72%), hsl(130 70% 52%));
+  --picture-alt: linear-gradient(135deg, hsl(30 75% 72%), hsl(70 70% 52%));
+  --announce-bg: #2f7a35;
+  --announce-ink: #fff;
   --df-sealed-font: var(--body-font);
   --df-sealed-color: var(--ink);
   --df-sealed-muted: var(--muted);
@@ -48,6 +50,15 @@
 
 .preview {
   display: block;
+}
+
+.announce {
+  margin: 0;
+  padding: 9px 16px;
+  background: var(--announce-bg);
+  color: var(--announce-ink);
+  font-size: 13px;
+  text-align: center;
 }
 
 .header {
@@ -107,30 +118,6 @@
 .navLink:hover {
   background: var(--header-hover);
 }
-.navItem {
-  position: relative;
-}
-.subnav {
-  display: flex;
-  flex-direction: column;
-  padding-left: 16px;
-}
-.subLink {
-  display: flex;
-  min-height: 40px;
-  align-items: center;
-  padding: 0 12px;
-  border-radius: 8px;
-  color: var(--header-ink);
-  font-size: 14px;
-  text-decoration: none;
-}
-.subLink:hover {
-  background: var(--header-hover);
-}
-.subToggle {
-  display: none;
-}
 
 .tools {
   display: flex;
@@ -150,29 +137,6 @@
 
 .tool:hover {
   background: var(--header-hover);
-}
-
-.tool:has(.count) {
-  position: relative;
-}
-
-.count {
-  position: absolute;
-  top: 4px;
-  right: 2px;
-  display: inline-flex;
-  min-width: 18px;
-  height: 18px;
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5px;
-  border-radius: 999px;
-  background: var(--accent);
-  color: var(--accent-ink);
-  font-size: 11px;
-  font-weight: 700;
-  line-height: 1;
 }
 
 .icon {
@@ -238,18 +202,6 @@
   max-width: 36ch;
   margin: 0;
   color: var(--footer-muted);
-}
-
-.contact {
-  margin: 0;
-  overflow-wrap: anywhere;
-}
-
-.social {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 16px;
-  text-transform: capitalize;
 }
 
 .links {
@@ -344,42 +296,6 @@
     gap: 4px;
     padding-block: 0;
   }
-  .subnav {
-    position: absolute;
-    top: 100%;
-    left: 0;
-    z-index: 20;
-    display: none;
-    min-width: 200px;
-    padding: 8px;
-    border: 1px solid var(--header-hover);
-    border-radius: 12px;
-    background: var(--header-bg);
-    box-shadow: 0 8px 24px color-mix(in srgb, var(--header-ink) 12%, transparent);
-  }
-  .navItem {
-    display: flex;
-    align-items: center;
-  }
-  .subToggle {
-    display: flex;
-    width: 28px;
-    height: 44px;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    border: 0;
-    background: none;
-    color: var(--header-ink);
-    cursor: pointer;
-  }
-  .subToggle .icon {
-    width: 16px;
-    height: 16px;
-  }
-  .subnavOpen {
-    display: flex;
-  }
 
   .tools {
     margin-left: auto;
@@ -390,7 +306,7 @@
   }
 
   .columns {
-    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
   }
 
   .about {
